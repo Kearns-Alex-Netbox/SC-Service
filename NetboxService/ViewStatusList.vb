@@ -27,7 +27,7 @@ Public Class ViewStatusList
 
 	Private Sub New_Button_Click() Handles New_Button.Click
 		'Open up our edit interface
-		Dim editStatusDialog As New EditStatus("NEW")
+		Dim editStatusDialog As New EditStatus("NEW", 0)
 		editStatusDialog.ShowDialog()
 	End Sub
 
@@ -40,16 +40,21 @@ Public Class ViewStatusList
 	End Sub
 
 	Private Sub Select_Button_Click() Handles Select_Button.Click
-		Dim code As String = ""
 		If Status_DataGridView.SelectedCells.Count <> 1 Then
 			MsgBox("Please select one record to use.")
 			Return
 		Else
 			'Get the "code" string
-			code = Status_DataGridView.Rows(Status_DataGridView.SelectedCells.Item(0).RowIndex).Cells(DB_HEADER_STATUS).Value.ToString
+			dim code  As String  = Status_DataGridView.Rows(Status_DataGridView.SelectedCells.Item(0).RowIndex).Cells(DB_HEADER_STATUS).Value.ToString
+
+			If code = "NEW" Then
+				New_Button_Click()
+				Return
+			End If
+			dim order As Integer = Status_DataGridView.Rows(Status_DataGridView.SelectedCells.Item(0).RowIndex).Cells(DB_HEADER_ORDER).Value.ToString
 
 			'Open up our edit interface
-			Dim editStatusDialog As New EditStatus(code)
+			Dim editStatusDialog As New EditStatus(code, order)
 			editStatusDialog.ShowDialog()
 		End If
 	End Sub
@@ -58,7 +63,7 @@ Public Class ViewStatusList
 		Dim cmd As New SqlCommand("", myConn)
 
 		'Get the columns that we want in our table.
-		cmd.CommandText = "SELECT [" & DB_HEADER_STATUS & "],[" & DB_HEADER_ID & "] FROM " & TABLE_RMASTATUS & " WHERE [" & DB_HEADER_ISAPPROVAL & "] = '1' ORDER BY [" & DB_HEADER_STATUS & "] ASC"
+		cmd.CommandText = "SELECT [" & DB_HEADER_STATUS & "],[" & DB_HEADER_ORDER & "],[" & DB_HEADER_ID & "] FROM " & TABLE_RMASTATUS & " ORDER BY [" & DB_HEADER_ORDER & "] ASC"
 
 		Dim dtCodes = New DataTable
 

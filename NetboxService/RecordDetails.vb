@@ -7,11 +7,10 @@
 '
 '   Tab 1 Customer Info:
 '   Tab 2 Evaluation:
-'   Tab 3 Approval:
-'   Tab 4 Shipping/Billing:
-'   Tab 5 Board Details: [Only shows when the RMA is a board and not a system.
-'   Tab 6 System Details: Boards associated with the system can each be clicked to see more information and auidt records.
-'   Tab 7 Extra Components: All of the extra little things that make a big difference from unit to unit
+'   Tab 3 Shipping/Billing:
+'   Tab 4 Board Details: [Only shows when the RMA is a board and not a system.
+'   Tab 5 System Details: Boards associated with the system can each be clicked to see more information and auidt records.
+'   Tab 6 Extra Components: All of the extra little things that make a big difference from unit to unit
 '
 ' Up/Down arrows: Moves through the resutls from the search table.
 ' Folder Directory: Opens up the folder location that is associated with this RMA unit to see any logs or pdfs.
@@ -141,11 +140,9 @@ Public Class RecordDetails
 			Dim informationDate As String = dt_rmaRecord(0)(DB_HEADER_INFORMATIONDATE).ToString
 			Dim ReceivedDate As String = dt_rmaRecord(0)(DB_HEADER_RECEIVEDDATE).ToString
 			Dim evaluationDate As String = dt_rmaRecord(0)(DB_HEADER_EVALUATIONDATE).ToString
-			Dim approvalDate As String = dt_rmaRecord(0)(DB_HEADER_APPROVALDATE).ToString
 			Dim shipDate As String = dt_rmaRecord(0)(DB_HEADER_SHIPDATE).ToString
 			Dim lastupdate As String = dt_rmaRecord(0)(DB_HEADER_LASTUPDATE).ToString
 			Dim technicianNotes As String = dt_rmaRecord(0)(DB_HEADER_TECHNICIANNOTES).ToString
-			Dim approvalNotes As String = dt_rmaRecord(0)(DB_HEADER_APPROVALNOTES).ToString
 			Dim testedCheck As String = dt_rmaRecord(0)(DB_HEADER_TESTED).ToString
 			Dim tested As Boolean = False
 
@@ -325,20 +322,6 @@ Public Class RecordDetails
 			EvalCodeItems_DataGridView.RowHeadersDefaultCellStyle.Font = newFont
 
 			TechnicianNotes_TextBox.Text = technicianNotes
-
-
-			'Populate the approval tab
-
-			'Only set date information if we have values.
-			If approvalDate.Length <> 0 Then
-				Dim useDate As Date = approvalDate
-				ApprovalDay_TextBox.Text = useDate.Day
-				ApprovalMonth_TextBox.Text = useDate.Month
-				ApprovalYear_TextBox.Text = useDate.Year
-			End If
-
-			ApprovalNotes_TextBox.Text = approvalNotes
-
 
 			'Populate the ship / bill tab
 
@@ -611,13 +594,6 @@ Public Class RecordDetails
 			commandString = commandString & ", [" & DB_HEADER_EVALUATIONDATE & "] = NULL"
 		End If
 
-		Dim approvalDate As Date = CheckDate(ApprovalDay_TextBox, ApprovalMonth_TextBox, ApprovalYear_TextBox, errorMessage)
-		If approvalDate <> Nothing Then
-			commandString = commandString & ", [" & DB_HEADER_APPROVALDATE & "] = '" & approvalDate & "'"
-		Else
-			commandString = commandString & ", [" & DB_HEADER_APPROVALDATE & "] = NULL"
-		End If
-
 		Dim shipDate As Date = CheckDate(ShipDay_TextBox, ShipMonth_TextBox, ShipYear_TextBox, errorMessage)
 		If shipDate <> Nothing Then
 			commandString = commandString & ", [" & DB_HEADER_SHIPDATE & "] = '" & shipDate & "'"
@@ -667,14 +643,6 @@ Public Class RecordDetails
 		commandString = commandString & ", [" & DB_HEADER_TECHNICIAN & "] = '" & technician & "', " &
 				"[" & DB_HEADER_SOFTWAREVERSION & "] = '" & softwareVer & "', [" & DB_HEADER_IOVERSION & "] = '" & IOVer & "', " &
 				"[" & DB_HEADER_BOOTVERSION & "] = '" & BootVer & "', [" & DB_HEADER_TECHNICIANNOTES & "] = '" & Notes & "'"
-
-		Dim approvalNotes As String = ApprovalNotes_TextBox.Text
-
-		If approvalNotes.Contains("'"c) = True Then
-			approvalNotes = approvalNotes.Replace("'", "''")
-		End If
-
-		commandString = commandString & ", [" & DB_HEADER_APPROVALNOTES & "] = '" & approvalNotes & "'"
 
 		Dim shipCompany As String = ShipCompany_TextBox.Text
 		Dim shipAddress As String = ShipAddress_TextBox.Text
@@ -1090,7 +1058,7 @@ Public Class RecordDetails
 			End Try
 
 			'Check to see if the serial numbers match eachother
-			If (SQL_API.DATABASE <> "Devel") Then
+			If (CurrentDatabase.Contains("Devel") = False) Then
 				If SerialNumber_TextBox.Text <> obj.serial.ToString Then
 					MsgBox("Expected: " & SerialNumber_TextBox.Text & " - Received: " & obj.serial.ToString)
 					Return
@@ -1104,6 +1072,10 @@ Public Class RecordDetails
 			retval = DownloadFiles("belleville")
 			If retval = False Then
 				DownloadFiles("aquametrix")
+			End If
+			If retval = False Then
+				DownloadFiles("bluesky")
+				MsgBox("Download logs not supported at this moment")
 			End If
 			'Chain any other passwords to try here.
 			'If retval = False Then
@@ -1679,7 +1651,7 @@ WHERE map.[SystemExtras.id] = (SELECT [SystemExtras.id] FROM dbo.System WHERE sy
 		Dim resultTable As New DataTable()
 
 		'Get all of our status's
-		Dim myCmd As New SqlCommand("SELECT * FROM " & TABLE_RMASTATUS & " ORDER BY [" & DB_HEADER_STATUS & "] ASC", myConn)
+		Dim myCmd As New SqlCommand("SELECT * FROM " & TABLE_RMASTATUS & " ORDER BY [" & DB_HEADER_ORDER & "] ASC", myConn)
 
 		resultTable.Load(myCmd.ExecuteReader)
 

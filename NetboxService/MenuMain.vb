@@ -41,23 +41,6 @@ Public Class MenuMain
 		OpenForm(NewRMA)
 	End Sub
 
-	Private Sub Receive_Button_Click() Handles Receive_Button.Click
-		OpenForm(Receive)
-	End Sub
-
-	Private Sub Evaluation_Button_Click() Handles Evaluation_Button.Click
-		OpenForm(Evaluation)
-	End Sub
-
-	Private Sub Approval_Button_Click() Handles Approval_Button.Click
-		OpenForm(Approval)
-	End Sub
-
-	Private Sub ShipBill_Button_Click() Handles ShipBill_Button.Click
-		OpenForm(ShipAndBill)
-	End Sub
-
-
 
 	Private Sub ViewRMAs_Button_Click() Handles ViewRMAs_Button.Click
 		OpenForm(ViewRMAs)
@@ -153,7 +136,7 @@ Public Class MenuMain
 		Return True
 	End Function
 
-	Private Sub Print_Button_Click() Handles Print_Button.Click
+	Private Sub Print_Button_Click()
 		'Check to see if we have a PDF path.
 		If My.Settings.PDFFilePath.Length = 0 Then
 			MsgBox("File Path to the PDF has not been set up. Please check the path in the settings.")
@@ -185,50 +168,6 @@ Public Class MenuMain
 			'Print the page.
 			Process.Start(processInfo)
 		End If
-	End Sub
-
-	Public Sub ContinueWithForm(ByVal sender As Form, ByVal nextForm As Form, ByRef ServiceForm As String)
-		Dim foundOpen As Boolean = False
-		WorkingServiceForm = True
-
-		'Search to see if we have the next form open 
-		Dim frmCollection = Application.OpenForms
-		For i = 0 To frmCollection.Count - 1
-			If frmCollection.Item(i).Name = nextForm.Name Then
-				'Set our found flag to True and activate the form.
-				foundOpen = True
-				frmCollection.Item(i).Activate()
-				Exit For
-			End If
-		Next i
-
-		Select Case sender.Name
-			Case Receive.Name
-				If foundOpen = False Then
-					Evaluation_Button_Click()
-					Evaluation.UseRecord(ServiceForm)
-				Else
-					Evaluation.UseRecord(ServiceForm)
-				End If
-
-			Case Evaluation.Name
-				If foundOpen = False Then
-					Approval_Button_Click()
-					Approval.UseRecord(ServiceForm)
-				Else
-					Approval.UseRecord(ServiceForm)
-				End If
-
-			Case Approval.Name
-				If foundOpen = False Then
-					ShipBill_Button_Click()
-					ShipAndBill.UseRecord(ServiceForm)
-				Else
-					ShipAndBill.UseRecord(ServiceForm)
-				End If
-
-		End Select
-		WorkingServiceForm = False
 	End Sub
 
 End Class

@@ -6,10 +6,6 @@
 Imports System.Data.SqlClient
 
 Public Class SQL_API
-	Private username As String = ""
-	Private password As String = ""
-
-	Public Const DATABASE As String = "Production"      'Devel or Production
 
 	'Board Status'
 	Const BS_BURN_IN As String = "Burn In"
@@ -64,7 +60,7 @@ Public Class SQL_API
 	''' <returns>True: successful open and return username. False: unsuccessful, see result message for details.</returns>
 	''' <remarks>This needs to be called before you make anyother commands.</remarks>
 	Public Function OpenDatabase(ByRef myConn As SqlConnection, ByRef myCmd As SqlCommand, ByRef loginName As String, ByRef result As String) As Boolean
-		myConn = New SqlConnection("server=tcp:nas1,1622;Database=" & DATABASE & ";User ID=" & username & ";password= " & password & ";")
+		myConn = New SqlConnection("server=tcp:nas1,1622;Database=" & CurrentDatabase & ";User ID=" & username & ";password= " & password & ";")
 		Try
 			myConn.Open()
 			myCmd = myConn.CreateCommand
@@ -636,7 +632,6 @@ Public Class SQL_API
 	''' </summary>
 	''' <param name="myCmd">The sql Command that will be used.</param>
 	''' <param name="myReader">SQL data reader that we are going to read from.</param>
-	''' <param name="systemSerialNumber">The system serial number that we are working with.</param>
 	''' <param name="type">OUTPUT: The current status of the system</param>
 	''' <param name="result">OUTPUT: Error result when things do not work.</param>
 	''' <returns>True: The record exists, returns the status. False: The record does not exists, see result for details.</returns>
@@ -694,7 +689,6 @@ Public Class SQL_API
 	''' Gets the System GUID of the passed in serial number. Closes the passed reader before exit.
 	''' </summary>
 	''' <param name="myCmd">The sql Command that will be used.</param>
-	''' <param name="myReader">The SQL data reader that we will be using.</param>
 	''' <param name="systemSerialNumber">The system serial number that we are checking for.</param>
 	''' <param name="record">OUTPUT: GUID variable that will hold the returned GUID.</param>
 	''' <param name="result">OUTPUT: Error report to show us what went wrong.</param>
@@ -833,7 +827,6 @@ Public Class SQL_API
 	''' <param name="myCmd">The sql Command that will be used.</param>
 	''' <param name="myReader">SQL data reader that we are going to read from.</param>
 	''' <param name="boardSerialNumber">The board serial number that we are working with.</param>
-	''' <param name="listbox">The listbox that we want to put all of the information into.</param>
 	''' <param name="result">OUTPUT: Error result when things do not work.</param>
 	''' <returns>True: The record exists, returns the date associated with the date field. False: The record does not exists, see result for details.</returns>
 	''' <remarks></remarks>

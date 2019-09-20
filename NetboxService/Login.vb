@@ -17,33 +17,47 @@ Imports System.Data.SqlClient
 Public Module Variables
 	Public UserName As String = ""
 	Public Password As String = ""
+
+	Public		 Databases()			   As	  String  = { "Production",
+															  "Devel", 
+															  "BlueSkyProduction", 
+															  "BlueSkyDevel" }
+
+	Public Const NB_PRODUCTION			   As	  Integer = 0
+	Public Const NB_DEVEL				   As	  Integer = 1
+	Public Const BSG_PRODUCTION			   As	  Integer = 2
+	Public Const BSG_DEVEL				   As	  Integer = 3
+
+	public		 CurrentIndex			   As	  Integer = NB_PRODUCTION
+	Public		 CurrentDatabase		   As	  String  = Databases(CurrentIndex)
+
 	Public myConn As SqlConnection
 	Public sqlapi As New SQL_API()
 
 	Public WorkingServiceForm As Boolean = False
 
-	Public runlogDownloadList() As String = {"startlog.txt" _
-											, "weblog.txt" _
-											, "smtpdiag.log" _
-											, "ditpdg0.log" _
-											, "boxstats.log" _
-											, "boxstat0.log" _
-											, "emailmsg.txt" _
-											, "emailmsg0.txt" _
-											, "mberror.log" _
-											, "mberror0.log" _
-											, "mbaccess.log" _
-											, "mbaccess0.log" _
-											, "error.log" _
-											, "error0.log" _
-											, "access.log" _
-											, "access0.log" _
-											, "sysacces.csv" _
-											, "sysaces0.csv" _
-											, "jscript.log" _
-											, "jscript0.log" _
-											, "runlog.txt" _
-											, "nbdiag.txt"}
+	Public runlogDownloadList() As String = {"startlog.txt",
+											 "weblog.txt",
+											 "smtpdiag.log",
+											 "ditpdg0.log",
+											 "boxstats.log",
+											 "boxstat0.log",
+											 "emailmsg.txt",
+											 "emailmsg0.txt",
+											 "mberror.log",
+											 "mberror0.log",
+											 "mbaccess.log",
+											 "mbaccess0.log",
+											 "error.log",
+											 "error0.log",
+											 "access.log",
+											 "access0.log",
+											 "sysacces.csv",
+											 "sysaces0.csv",
+											 "jscript.log",
+											 "jscript0.log",
+											 "runlog.txt",
+											 "nbdiag.txt"}
 
 	Public alarmDownloadList() As String = {}
 
@@ -137,6 +151,7 @@ Public Module Variables
 	Public Const DB_HEADER_CHARGE As String = "Charge"                          '     |              |          |             |          | RMARepairItems |           |             |
 	Public Const DB_HEADER_ISAPPROVAL As String = "Is Approval"                 '     |              |          |             |          |                | RMAStatus |             |
 	Public Const DB_HEADER_STATUS As String = "Status"                          '     |              |          |             |          |                | RMAStatus |             |
+	Public Const DB_HEADER_ORDER As String = "Order"							'     |              |          |             |          |                | RMAStatus |             |
 	Public Const DB_HEADER_RMACODESID As String = "RMACodes.id"                 '     |              |          |             |          |                |           | RMACodeList |
 	Public Const DB_HEADER_EVALUATION As String = "Evaluation"                  '     |              |          |             |          |                |           | RMACodeList |
 
@@ -161,7 +176,25 @@ Public Class Login
 	Private Sub Login_Load() Handles MyBase.Load
 		'Set up the version and database type for our labels.
 		L_Version.Text = "V:" & Application.ProductVersion
-		L_Database.Text = SQL_API.DATABASE
+		
+		' find out what database we are going to connect to
+		Select Case CurrentDatabase
+			Case Databases(NB_PRODUCTION)
+				L_Database.Text = "NB"
+
+			Case Databases(NB_DEVEL)
+				L_Database.Text = "NB Devel"
+
+			Case Databases(BSG_PRODUCTION)
+				L_Database.Text = "BSG"
+
+			Case Databases(BSG_DEVEL)
+				L_Database.Text = "BSG Devel"
+
+			Case Else
+				L_Database.Text = "NOT KNOWN"
+
+		End Select
 
 		KeyPreview = True
 	End Sub

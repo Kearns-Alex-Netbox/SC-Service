@@ -29,7 +29,7 @@ Public Class NewRMA
 
 	Private Sub GeneralInformation_Load() Handles MyBase.Load
 		'Get today's date and populate
-		Date_DTP.Value = Date.Now
+		Information_DTP.Value = Date.Now
 
 		'Get the most recent Service Form number.
 		Dim cmd As New SqlCommand("SELECT [" & DB_HEADER_VALUESTRING & "] FROM " & TABLE_PARAMETERS & " WHERE [" & DB_HEADER_ID & "] = 'SFN'", myConn)
@@ -189,7 +189,7 @@ Public Class NewRMA
 
 		'Add our information to the database as a new entry.
 		Dim sfn As Integer = ServiceForm_TextBox.Text
-		Dim infoDate As new Date (Date_DTP.Value.Year, Date_DTP.Value.Month, Date_DTP.Value.Day)
+		Dim infoDate As new Date (Information_DTP.Value.Year, Information_DTP.Value.Month, Information_DTP.Value.Day)
 		Dim serialNumber As String = SerialNumber_TextBox.Text
 		Dim customer As String = Customer_TextBox.Text
 		Dim contactName As String = ContactName_TextBox.Text
@@ -206,7 +206,7 @@ Public Class NewRMA
 
 		Try
 			'Get the GUID of the status that we want
-			cmd.CommandText = "SELECT [" & DB_HEADER_ID & "] FROM " & TABLE_RMASTATUS & " WHERE [" & DB_HEADER_STATUS & "] = 'Info Gathered'"
+			cmd.CommandText = "SELECT [" & DB_HEADER_ID & "] FROM " & TABLE_RMASTATUS & " WHERE [" & DB_HEADER_STATUS & "] = 'Issued'"
 			Dim statusGUID As Guid = cmd.ExecuteScalar
 
 			'Add the record to the database.

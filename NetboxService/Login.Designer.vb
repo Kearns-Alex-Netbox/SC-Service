@@ -31,22 +31,25 @@ Partial Class Login
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.B_Login = New System.Windows.Forms.Button()
 		Me.L_Database = New System.Windows.Forms.Label()
-		Me.SuspendLayout()
+		Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+		CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
+		Me.SuspendLayout
 		'
 		'Label3
 		'
-		Me.Label3.AutoSize = True
-		Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label3.Location = New System.Drawing.Point(44, 7)
+		Me.Label3.AutoSize = true
+		Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 18!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.Label3.Location = New System.Drawing.Point(48, 59)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(191, 29)
 		Me.Label3.TabIndex = 0
 		Me.Label3.Text = "Netbox Service"
+		Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		'
 		'L_Version
 		'
-		Me.L_Version.AutoSize = True
-		Me.L_Version.Location = New System.Drawing.Point(13, 136)
+		Me.L_Version.AutoSize = true
+		Me.L_Version.Location = New System.Drawing.Point(12, 194)
 		Me.L_Version.Name = "L_Version"
 		Me.L_Version.Size = New System.Drawing.Size(53, 13)
 		Me.L_Version.TabIndex = 8
@@ -54,30 +57,30 @@ Partial Class Login
 		'
 		'B_Exit
 		'
-		Me.B_Exit.AutoSize = True
+		Me.B_Exit.AutoSize = true
 		Me.B_Exit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-		Me.B_Exit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.B_Exit.Location = New System.Drawing.Point(221, 103)
+		Me.B_Exit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.B_Exit.Location = New System.Drawing.Point(221, 184)
 		Me.B_Exit.Name = "B_Exit"
 		Me.B_Exit.Size = New System.Drawing.Size(49, 30)
 		Me.B_Exit.TabIndex = 7
 		Me.B_Exit.Text = "Exit"
-		Me.B_Exit.UseVisualStyleBackColor = True
+		Me.B_Exit.UseVisualStyleBackColor = true
 		'
 		'TB_Password
 		'
-		Me.TB_Password.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.TB_Password.Location = New System.Drawing.Point(110, 71)
+		Me.TB_Password.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.TB_Password.Location = New System.Drawing.Point(110, 152)
 		Me.TB_Password.Name = "TB_Password"
 		Me.TB_Password.Size = New System.Drawing.Size(160, 26)
 		Me.TB_Password.TabIndex = 4
-		Me.TB_Password.UseSystemPasswordChar = True
+		Me.TB_Password.UseSystemPasswordChar = true
 		'
 		'Label2
 		'
-		Me.Label2.AutoSize = True
-		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label2.Location = New System.Drawing.Point(12, 74)
+		Me.Label2.AutoSize = true
+		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.Label2.Location = New System.Drawing.Point(22, 155)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(82, 20)
 		Me.Label2.TabIndex = 3
@@ -85,17 +88,17 @@ Partial Class Login
 		'
 		'TB_User
 		'
-		Me.TB_User.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.TB_User.Location = New System.Drawing.Point(110, 39)
+		Me.TB_User.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.TB_User.Location = New System.Drawing.Point(110, 120)
 		Me.TB_User.Name = "TB_User"
 		Me.TB_User.Size = New System.Drawing.Size(160, 26)
 		Me.TB_User.TabIndex = 2
 		'
 		'Label1
 		'
-		Me.Label1.AutoSize = True
-		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label1.Location = New System.Drawing.Point(12, 42)
+		Me.Label1.AutoSize = true
+		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.Label1.Location = New System.Drawing.Point(11, 123)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(93, 20)
 		Me.Label1.TabIndex = 1
@@ -103,31 +106,43 @@ Partial Class Login
 		'
 		'B_Login
 		'
-		Me.B_Login.AutoSize = True
+		Me.B_Login.AutoSize = true
 		Me.B_Login.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-		Me.B_Login.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.B_Login.Location = New System.Drawing.Point(152, 103)
+		Me.B_Login.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.B_Login.Location = New System.Drawing.Point(152, 184)
 		Me.B_Login.Name = "B_Login"
 		Me.B_Login.Size = New System.Drawing.Size(63, 30)
 		Me.B_Login.TabIndex = 6
 		Me.B_Login.Text = "Login"
-		Me.B_Login.UseVisualStyleBackColor = True
+		Me.B_Login.UseVisualStyleBackColor = true
 		'
 		'L_Database
 		'
-		Me.L_Database.AutoSize = True
-		Me.L_Database.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.L_Database.Location = New System.Drawing.Point(9, 104)
+		Me.L_Database.Font = New System.Drawing.Font("Microsoft Sans Serif", 18!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.L_Database.Location = New System.Drawing.Point(12, 88)
 		Me.L_Database.Name = "L_Database"
-		Me.L_Database.Size = New System.Drawing.Size(147, 29)
+		Me.L_Database.Size = New System.Drawing.Size(263, 29)
 		Me.L_Database.TabIndex = 5
 		Me.L_Database.Text = "DATABASE"
+		Me.L_Database.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+		'
+		'PictureBox1
+		'
+		Me.PictureBox1.Image = Global.NetboxService.My.Resources.Resources.netboxsc
+		Me.PictureBox1.InitialImage = Nothing
+		Me.PictureBox1.Location = New System.Drawing.Point(44, 12)
+		Me.PictureBox1.Name = "PictureBox1"
+		Me.PictureBox1.Size = New System.Drawing.Size(199, 44)
+		Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+		Me.PictureBox1.TabIndex = 59
+		Me.PictureBox1.TabStop = false
 		'
 		'Login
 		'
-		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(279, 159)
+		Me.ClientSize = New System.Drawing.Size(287, 219)
+		Me.Controls.Add(Me.PictureBox1)
 		Me.Controls.Add(Me.Label3)
 		Me.Controls.Add(Me.L_Version)
 		Me.Controls.Add(Me.B_Exit)
@@ -140,10 +155,11 @@ Partial Class Login
 		Me.Name = "Login"
 		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
 		Me.Text = "Login"
-		Me.ResumeLayout(False)
-		Me.PerformLayout()
+		CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
+		Me.ResumeLayout(false)
+		Me.PerformLayout
 
-	End Sub
+End Sub
 	Friend WithEvents Label3 As Label
 	Friend WithEvents L_Version As Label
 	Friend WithEvents B_Exit As Button
@@ -153,4 +169,5 @@ Partial Class Login
 	Friend WithEvents Label1 As Label
 	Friend WithEvents B_Login As Button
 	Friend WithEvents L_Database As Label
+	Friend WithEvents PictureBox1 As PictureBox
 End Class

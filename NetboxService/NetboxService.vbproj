@@ -60,7 +60,14 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\NetBox-Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel1">
+      <HintPath>..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\14.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Newtonsoft JSON Files\NewtonsoftV6\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -91,12 +98,6 @@
       <DependentUpon>AddBoardComment.vb</DependentUpon>
     </Compile>
     <Compile Include="AddBoardComment.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Approval.Designer.vb">
-      <DependentUpon>Approval.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Approval.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditAddress.Designer.vb">
@@ -135,12 +136,6 @@
     <Compile Include="RecordDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShipAndBill.Designer.vb">
-      <DependentUpon>ShipAndBill.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ShipAndBill.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ViewAddresses.Designer.vb">
       <DependentUpon>ViewAddresses.vb</DependentUpon>
     </Compile>
@@ -163,12 +158,6 @@
       <DependentUpon>ViewErrorCodes.vb</DependentUpon>
     </Compile>
     <Compile Include="ViewErrorCodes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Evaluation.Designer.vb">
-      <DependentUpon>Evaluation.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Evaluation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewRMA.Designer.vb">
@@ -200,12 +189,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Receive.Designer.vb">
-      <DependentUpon>Receive.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Receive.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SelectRecord.Designer.vb">
       <DependentUpon>SelectRecord.vb</DependentUpon>
     </Compile>
@@ -236,9 +219,6 @@
     <EmbeddedResource Include="AddBoardComment.resx">
       <DependentUpon>AddBoardComment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Approval.resx">
-      <DependentUpon>Approval.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditAddress.resx">
       <DependentUpon>EditAddress.vb</DependentUpon>
     </EmbeddedResource>
@@ -254,9 +234,6 @@
     <EmbeddedResource Include="RecordDetails.resx">
       <DependentUpon>RecordDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShipAndBill.resx">
-      <DependentUpon>ShipAndBill.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ViewAddresses.resx">
       <DependentUpon>ViewAddresses.vb</DependentUpon>
     </EmbeddedResource>
@@ -268,9 +245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewErrorCodes.resx">
       <DependentUpon>ViewErrorCodes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Evaluation.resx">
-      <DependentUpon>Evaluation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewRMA.resx">
       <DependentUpon>NewRMA.vb</DependentUpon>
@@ -286,9 +260,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Receive.resx">
-      <DependentUpon>Receive.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectRecord.resx">
       <DependentUpon>SelectRecord.vb</DependentUpon>
@@ -323,17 +294,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <None Include="Resources\netboxsc.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\RightArrow.png" />
   </ItemGroup>
@@ -345,6 +307,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\UpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NetBox-Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

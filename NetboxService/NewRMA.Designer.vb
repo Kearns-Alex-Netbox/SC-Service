@@ -53,7 +53,7 @@ Partial Class NewRMA
 		Me.CodeItems_DataGridView = New System.Windows.Forms.DataGridView()
 		Me.DeleteCode_Button = New System.Windows.Forms.Button()
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-		Me.Date_DTP = New System.Windows.Forms.DateTimePicker()
+		Me.Information_DTP = New System.Windows.Forms.DateTimePicker()
 		CType(Me.CodeItems_DataGridView,System.ComponentModel.ISupportInitialize).BeginInit
 		Me.GroupBox1.SuspendLayout
 		Me.SuspendLayout
@@ -365,16 +365,16 @@ Partial Class NewRMA
 		Me.GroupBox1.TabStop = false
 		Me.GroupBox1.Text = "Codes"
 		'
-		'Date_DTP
+		'Information_DTP
 		'
-		Me.Date_DTP.CalendarFont = New System.Drawing.Font("Consolas", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-		Me.Date_DTP.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-		Me.Date_DTP.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-		Me.Date_DTP.Location = New System.Drawing.Point(173, 92)
-		Me.Date_DTP.Name = "Date_DTP"
-		Me.Date_DTP.Size = New System.Drawing.Size(120, 26)
-		Me.Date_DTP.TabIndex = 31
-		Me.Date_DTP.Value = New Date(2019, 4, 9, 8, 52, 40, 0)
+		Me.Information_DTP.CalendarFont = New System.Drawing.Font("Consolas", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.Information_DTP.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+		Me.Information_DTP.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+		Me.Information_DTP.Location = New System.Drawing.Point(173, 92)
+		Me.Information_DTP.Name = "Information_DTP"
+		Me.Information_DTP.Size = New System.Drawing.Size(120, 26)
+		Me.Information_DTP.TabIndex = 31
+		Me.Information_DTP.Value = New Date(2019, 4, 9, 8, 52, 40, 0)
 		'
 		'NewRMA
 		'
@@ -382,7 +382,7 @@ Partial Class NewRMA
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.AutoScroll = true
 		Me.ClientSize = New System.Drawing.Size(792, 528)
-		Me.Controls.Add(Me.Date_DTP)
+		Me.Controls.Add(Me.Information_DTP)
 		Me.Controls.Add(Me.GroupBox1)
 		Me.Controls.Add(Me.Tested_CheckBox)
 		Me.Controls.Add(Me.Label10)
@@ -445,5 +445,5 @@ End Sub
 	Friend WithEvents CodeItems_DataGridView As DataGridView
 	Friend WithEvents DeleteCode_Button As Button
 	Friend WithEvents GroupBox1 As GroupBox
-	Friend WithEvents Date_DTP As DateTimePicker
+	Friend WithEvents Information_DTP As DateTimePicker
 End Class

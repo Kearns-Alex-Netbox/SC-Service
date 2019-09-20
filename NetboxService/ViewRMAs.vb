@@ -54,7 +54,6 @@ Public Class ViewRMAs
 								", rma.[" & DB_HEADER_INFORMATIONDATE & "]" &
 								", rma.[" & DB_HEADER_RECEIVEDDATE & "]" &
 								", rma.[" & DB_HEADER_EVALUATIONDATE & "]" &
-								", rma.[" & DB_HEADER_APPROVALDATE & "]" &
 								", rma.[" & DB_HEADER_SHIPDATE & "]" &
 								", rma.[" & DB_HEADER_LASTUPDATE & "]" &
 								", codes.[" & DB_HEADER_CODE & "]" &
@@ -96,7 +95,6 @@ Public Class ViewRMAs
 								", [" & DB_HEADER_INFORMATIONDATE & "]" &
 								", [" & DB_HEADER_RECEIVEDDATE & "]" &
 								", [" & DB_HEADER_EVALUATIONDATE & "]" &
-								", [" & DB_HEADER_APPROVALDATE & "]" &
 								", [" & DB_HEADER_SHIPDATE & "]" &
 								", [" & DB_HEADER_LASTUPDATE & "]"
 
